@@ -1,5 +1,6 @@
 package sec01.ex01;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,4 +37,17 @@ public class InputServlet extends HttpServlet {
 			System.out.println("선택한 과목 : " + e);
 		}
 	}
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("InputServlet Init");
+	}
+
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
+	}
+	
+	
 }

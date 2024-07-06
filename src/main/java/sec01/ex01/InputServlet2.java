@@ -1,5 +1,6 @@
 package sec01.ex01;
 
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,24 +9,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Enumeration;
 
-/**
- * Servlet implementation class InputServlet
- */
 @WebServlet("/input2")
 public class InputServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public InputServlet2() {
-        super();
-        // TODO Auto-generated constructor stub
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String user_id = request.getParameter("user_id");
@@ -43,4 +34,16 @@ public class InputServlet2 extends HttpServlet {
 			}
 		}
 	}
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("InputServlet Init");
+	}
+
+	@Override
+	public void destroy() {
+
+	}
+	
+	
 }
