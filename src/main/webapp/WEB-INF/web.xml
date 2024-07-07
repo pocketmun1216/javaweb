@@ -9,14 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>SetCookieValue</display-name>
-    <servlet-name>SetCookieValue</servlet-name>
-    <servlet-class>sec02.ex01.SetCookieValue</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SetCookieValue</servlet-name>
-    <url-pattern>/set</url-pattern>
-  </servlet-mapping>
 </web-app>
