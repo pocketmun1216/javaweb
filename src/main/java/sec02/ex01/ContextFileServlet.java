@@ -3,6 +3,7 @@ package sec02.ex01;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,7 +16,16 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-@WebServlet("/cfile")
+@WebServlet(
+		urlPatterns = {
+				"cfile1", "cfile2"
+		},
+		initParams = {
+				@WebInitParam(name = "cfile1", value="cfile1 values"),
+				@WebInitParam(name = "cfile2", value="cfile2 values")
+		},
+		loadOnStartup = 1
+		)
 public class ContextFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,6 +36,7 @@ public class ContextFileServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
+		System.out.println("load on start up");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
