@@ -1,6 +1,5 @@
-package sec01.ex01;
+package sec02.ex01;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -11,16 +10,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/first")
-public class FirstServlet extends HttpServlet {
+@WebServlet("/initMenu")
+public class ContextParamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public FirstServlet() {
+       
+    public ContextParamServlet() {
     }
 
 
 	public void init(ServletConfig config) throws ServletException {
-		System.out.println("first init 호출");
+		super.init(config);
 	}
 
 
@@ -29,14 +28,26 @@ public class FirstServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
 		ServletContext context = getServletContext();
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		context.setAttribute("나이 : ", 34);
+		
+		String name = context.getInitParameter("name");
+		String address = context.getInitParameter("address");
+		
+		
+		System.out.println("이름 : " + name);
+		System.out.println("주소 : " + address);
+		
+		StringBuilder data = new StringBuilder("<html><body>");
+		data.append("이름 : " + name + "<br>");
+		data.append("주소 : " + address + "<br>");
+		
+		data.append("</body></html>");
+		out.print(data);
 	}
 
 }
