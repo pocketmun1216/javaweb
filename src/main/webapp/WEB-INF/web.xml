@@ -9,12 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  <context-param>
-    <param-name>name</param-name>
-    <param-value>성욱</param-value>
-  </context-param>
-  <context-param>
-    <param-name>address</param-name>
-    <param-value>부산광역시</param-value>
-  </context-param>
+  <servlet>
+    <description></description>
+    <display-name>SetCookieValue</display-name>
+    <servlet-name>SetCookieValue</servlet-name>
+    <servlet-class>sec02.ex01.SetCookieValue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetCookieValue</servlet-name>
+    <url-pattern>/set</url-pattern>
+  </servlet-mapping>
 </web-app>

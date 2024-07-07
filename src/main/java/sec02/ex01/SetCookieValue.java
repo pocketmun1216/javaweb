@@ -1,53 +1,48 @@
 package sec02.ex01;
 
 import jakarta.servlet.ServletConfig;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.Date;
 
-@WebServlet("/initMenu")
-public class ContextParamServlet extends HttpServlet {
+@WebServlet(
+		urlPatterns = {
+				"/set"
+		}
+		)
+public class SetCookieValue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ContextParamServlet() {
+    public SetCookieValue() {
+        super();
     }
-
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 	}
 
-
 	public void destroy() {
 	}
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		Date d = new Date();
+		Cookie c = new Cookie("cookieTest", URLEncoder.encode("JSP 프로그래밍입니다.", "UTF-8"));
+		c.setMaxAge(-1);
 		
-		ServletContext context = getServletContext();
-		context.setAttribute("나이 : ", 34);
+		response.addCookie(c);
 		
-		String name = context.getInitParameter("name");
-		String address = context.getInitParameter("address");
+		out.print("현재 시간 : " + d);
+		out.print("현재 시간을 Cookie로 저장합니다.");
 		
-		
-		System.out.println("이름 : " + name);
-		System.out.println("주소 : " + address);
-		
-		StringBuilder data = new StringBuilder("<html><body>");
-		data.append("이름 : " + name + "<br>");
-		data.append("주소 : " + address + "<br>");
-		
-		data.append("</body></html>");
-		out.print(data);
 	}
 
 }
